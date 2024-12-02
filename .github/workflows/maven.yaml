@@ -20,4 +20,6 @@ jobs:
         cache: maven
         distribution: temurin
     - name: Build with Maven
+      env:
+        CI: true
       run: mvn -B verify
