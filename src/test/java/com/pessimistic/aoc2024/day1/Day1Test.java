@@ -9,7 +9,7 @@ class Day1Test {
 
     @Test
     void star1Example() {
-        var result = Day1.similarityStar1("example/day-1.test.txt");
+        var result = Day1.similarityStar1("example/day-1.txt");
         assertThat(result).isEqualTo(11);
     }
 
@@ -22,7 +22,7 @@ class Day1Test {
 
     @Test
     void star2Example() {
-        var result = Day1.similarityStar2("example/day-1.test.txt");
+        var result = Day1.similarityStar2("example/day-1.txt");
         assertThat(result).isEqualTo(31);
     }
 
