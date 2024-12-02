@@ -27,6 +27,6 @@ class Day1Test {
     @Test
     void star2() {
         var result = Day1.similarityStar2("day-1.txt");
-        assertThat(result).isEqualTo(31);
+        assertThat(result).isEqualTo(20719933);
     }
 }
