@@ -8,7 +8,7 @@ class FileUtilsTest {
 
     @Test
     void testReadTestFileToStrings() {
-        var underTest = FileUtils.readTestFile("day-1.test.txt");
+        var underTest = FileUtils.readTestFile("example/day-1.test.txt");
         assertThat(underTest)
                 .first()
                 .isEqualTo("3   4");
