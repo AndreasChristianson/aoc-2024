@@ -4,10 +4,6 @@ import com.pessimistic.aoc2024.FileUtils;
 import com.pessimistic.aoc2024.NullUtils;
 import com.pessimistic.aoc2024.TextUtils;
 
-import java.util.List;
-import java.util.stream.IntStream;
-import java.util.stream.Stream;
-
 public class Day3 {
     private Day3() {
     }
@@ -15,36 +11,44 @@ public class Day3 {
 
     public static long star1(String fileName) {
         var text = FileUtils.readWholeTestFile(fileName);
-        var matches = TextUtils.allMatches(text, "mul\\((?<left>\\d+),(?<right>\\d+)\\)", List.of("left","right"));
-        return matches.stream()
-                .mapToInt(map -> Integer.parseInt(map.get("left")) * Integer.parseInt(map.get("right")))
+        return TextUtils.allMatches(
+                        text,
+                        "mul\\((?<left>\\d+),(?<right>\\d+)\\)"
+                )
+                .mapToLong(match -> {
+                    var left = Long.parseLong(match.get("left"));
+                    var right = Long.parseLong(match.get("right"));
+                    return left * right;
+                })
                 .sum();
     }
 
 
     public static long star2(String fileName) {
-        var text = FileUtils.readWholeTestFile(fileName);
+        final var text = FileUtils.readWholeTestFile(fileName);
         var matches = TextUtils.allMatches(
                 text,
-                "(?<do>do)\\(\\)|(?<dont>don't)\\(\\)|(?<mul>mul)\\((?<left>\\d+),(?<right>\\d+)\\)",
-                List.of("left","right", "do", "dont", "mul")
+                "(?<do>do)\\(\\)|(?<dont>don't)\\(\\)|(?<mul>mul)\\((?<left>\\d+),(?<right>\\d+)\\)"
         );
         var process = true;
         var sum = 0L;
-        for(var match : matches) {
+        for (var match : matches.toList()) {
             switch (NullUtils.coalesce(match.get("do"), match.get("dont"), match.get("mul"))) {
-                case "mul":{
-                    if(process) {
-                        sum+=Integer.parseInt(match.get("left")) * Integer.parseInt(match.get("right"));
+                case "mul":
+                    if (process) {
+                        var left = Long.parseLong(match.get("left"));
+                        var right = Long.parseLong(match.get("right"));
+                        sum += left * right;
                     }
-                }
-                break;
-                case "do": process=true;
-                break;
-                case "don't": process=false;
-                break;
+                    break;
+                case "do":
+                    process = true;
+                    break;
+                case "don't":
+                    process = false;
+                case null:
+                default:
             }
-
         }
         return sum;
     }
