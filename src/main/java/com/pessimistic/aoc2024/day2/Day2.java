@@ -1,5 +1,6 @@
 package com.pessimistic.aoc2024.day2;
 
+import com.pessimistic.aoc2024.CombinatoricsUtils;
 import com.pessimistic.aoc2024.FileUtils;
 import com.pessimistic.aoc2024.PatternUtils;
 import com.pessimistic.aoc2024.TextUtils;
@@ -41,7 +42,8 @@ public class Day2 {
 
     public static long safeCountWithDamper(String fileName) {
         return readFile(fileName)
-                .map(Day2::damper)
+                .map(IntStream::boxed)
+                .map(CombinatoricsUtils.pickLessThanTotal(1))
                 .filter(intStreamStream -> intStreamStream
                         .map(PatternUtils::deltas)
                         .filter(isMagnitudeSmallerThan(4))

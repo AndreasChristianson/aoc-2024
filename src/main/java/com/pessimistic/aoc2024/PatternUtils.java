@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class PatternUtils {
     private PatternUtils() {
@@ -35,7 +36,17 @@ public class PatternUtils {
      * @return
      */
     public static List<Integer> deltas(IntStream intStream) {
-        var asList = intStream.boxed().toList();
+        return deltas(intStream.boxed());
+    }
+
+    /**
+     * gets the change between elements of an int stream
+     *
+     * @param intStream
+     * @return
+     */
+    public static List<Integer> deltas(Stream<Integer> intStream) {
+        var asList = intStream.toList();
         if (asList.size() < 2) {
             return Collections.emptyList();
         }
