@@ -5,7 +5,6 @@ import org.apache.commons.numbers.combinatorics.Combinations;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Function;
-import java.util.stream.IntStream;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
@@ -21,10 +20,17 @@ public class CombinatoricsUtils {
                 );
     }
 
-    public static <K> Function<Stream<K>,Stream<Stream<K>>> pickLessThanTotal(int numberLessThanTotal) {
+    public static <K> Function<Stream<K>, Stream<Stream<K>>> pickLessThanTotal(int numberLessThanTotal) {
         return stream -> {
             var asList = stream.toList();
-            return pick(asList, asList.size()-numberLessThanTotal);
+            return pick(asList, asList.size() - numberLessThanTotal);
+        };
+    }
+
+    public static <K> Function<Stream<K>, Stream<Stream<K>>> pick(int numberToPick) {
+        return stream -> {
+            var asList = stream.toList();
+            return pick(asList, numberToPick);
         };
     }
 

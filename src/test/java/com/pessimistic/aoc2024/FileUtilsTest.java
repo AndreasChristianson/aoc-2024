@@ -21,6 +21,7 @@ class FileUtilsTest {
                 .first()
                 .isEqualTo("3   4");
     }
+
     @Test
     void testReadFileToStringsWithProcessing() {
         var underTest = FileUtils.readFile("src/test/resources/example/day-1.txt", string -> string.split(" +"));

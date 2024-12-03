@@ -1,16 +1,10 @@
 package com.pessimistic.aoc2024.day3;
 
 import com.pessimistic.aoc2024.FileUtils;
-import com.pessimistic.aoc2024.PatternUtils;
 import com.pessimistic.aoc2024.TextUtils;
-import org.apache.commons.numbers.combinatorics.Combinations;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.function.Predicate;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
-import java.util.stream.StreamSupport;
 
 public class Day3 {
     private Day3() {

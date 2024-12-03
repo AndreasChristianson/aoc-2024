@@ -33,10 +33,10 @@ class PatternUtilsTest {
     @Test
     void deltas() {
         Assertions.assertThat(PatternUtils.deltas(IntStream.of(1, 0, -1)))
-                .isEqualTo(List.of(-1,-1));
-        Assertions.assertThat(PatternUtils.deltas(IntStream.of(1,2,3,4,5)))
-                .isEqualTo(List.of(1,1,1,1));
-        Assertions.assertThat(PatternUtils.deltas(IntStream.of(10,20,30,20,10)))
-                .isEqualTo(List.of(10,10,-10,-10));
+                .isEqualTo(List.of(-1, -1));
+        Assertions.assertThat(PatternUtils.deltas(IntStream.of(1, 2, 3, 4, 5)))
+                .isEqualTo(List.of(1, 1, 1, 1));
+        Assertions.assertThat(PatternUtils.deltas(IntStream.of(10, 20, 30, 20, 10)))
+                .isEqualTo(List.of(10, 10, -10, -10));
     }
 }

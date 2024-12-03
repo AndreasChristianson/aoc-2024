@@ -33,11 +33,11 @@ public class Day2 {
     }
 
     private static Predicate<List<Integer>> isMagnitudeSmallerThan(int max) {
-        return ints -> ints.stream().allMatch(i -> Math.abs(i)<max);
+        return ints -> ints.stream().allMatch(i -> Math.abs(i) < max);
     }
 
     private static Predicate<List<Integer>> isMagnitudeLargerThan(int min) {
-        return ints -> ints.stream().allMatch(i -> Math.abs(i)>min);
+        return ints -> ints.stream().allMatch(i -> Math.abs(i) > min);
     }
 
     public static long safeCountWithDamper(String fileName) {
@@ -54,7 +54,7 @@ public class Day2 {
 
     private static Stream<IntStream> damper(IntStream intStream) {
         var asList = intStream.boxed().toList();
-        return StreamSupport.stream(Combinations.of(asList.size(),asList.size()-1).spliterator(),false)
+        return StreamSupport.stream(Combinations.of(asList.size(), asList.size() - 1).spliterator(), false)
                 .map(indices -> Arrays.stream(indices).map(asList::get));
     }
 }
