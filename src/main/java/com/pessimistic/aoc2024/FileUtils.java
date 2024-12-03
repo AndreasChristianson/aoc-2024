@@ -6,6 +6,7 @@ import org.apache.commons.io.IOUtils;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.function.Function;
@@ -33,5 +34,16 @@ public class FileUtils {
 
     public static List<String> readTestFile(String fileName) {
         return readFile("src/test/resources/%s".formatted(fileName));
+    }
+
+    public static String readWholeFile(String fileName) {
+        try (var inputStream = new FileInputStream(fileName);) {
+            return IOUtils.toString(inputStream, Charset.defaultCharset());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public static String readWholeTestFile(String fileName) {
+        return readWholeFile("src/test/resources/%s".formatted(fileName));
     }
 }
