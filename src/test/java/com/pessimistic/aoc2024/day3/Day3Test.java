@@ -30,6 +30,6 @@ class Day3Test {
     @Test
     void star2() {
         var result = Day3.star2("actual/day-3.txt");
-        assertThat(result).isEqualTo(62098619L);
+        assertThat(result).isEqualTo(62098619);
     }
 }

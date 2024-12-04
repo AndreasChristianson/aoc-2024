@@ -1,7 +1,6 @@
 package com.pessimistic.aoc2024;
 
-import java.util.Arrays;
-import java.util.Map;
+import java.util.*;
 import java.util.function.Function;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -31,4 +30,18 @@ public class TextUtils {
                         .collect(Collectors.toConcurrentMap(Function.identity(), matcher::group)));
     }
 
+    public static Long matchCount(String input, String regex) {
+        Matcher matcher = Pattern.compile(regex)
+                .matcher(input);
+        return matcher.results().count();
+    }
+
+    public static void printGrid(List<List<String>> grid) {
+        for (List<String> line : grid) {
+            for (var s : line) {
+                System.out.print(s);
+            }
+            System.out.println();
+        }
+    }
 }
