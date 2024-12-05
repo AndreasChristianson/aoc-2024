@@ -1,8 +1,8 @@
 package com.pessimistic.aoc2024.day4;
 
-import com.pessimistic.aoc2024.FileUtils;
-import com.pessimistic.aoc2024.TextUtils;
-import com.pessimistic.aoc2024.TwoDimensionalUtils;
+import com.pessimistic.aoc2024.util.FileUtils;
+import com.pessimistic.aoc2024.util.TextUtils;
+import com.pessimistic.aoc2024.util.TwoDimensionalUtils;
 
 import java.util.Arrays;
 import java.util.Collection;

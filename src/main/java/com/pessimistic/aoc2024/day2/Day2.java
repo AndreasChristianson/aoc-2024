@@ -1,9 +1,9 @@
 package com.pessimistic.aoc2024.day2;
 
-import com.pessimistic.aoc2024.CombinatoricsUtils;
-import com.pessimistic.aoc2024.FileUtils;
-import com.pessimistic.aoc2024.PatternUtils;
-import com.pessimistic.aoc2024.TextUtils;
+import com.pessimistic.aoc2024.util.CombinatoricsUtils;
+import com.pessimistic.aoc2024.util.FileUtils;
+import com.pessimistic.aoc2024.util.PatternUtils;
+import com.pessimistic.aoc2024.util.TextUtils;
 import org.apache.commons.numbers.combinatorics.Combinations;
 
 import java.util.Arrays;

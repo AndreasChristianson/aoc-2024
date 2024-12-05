@@ -1,4 +1,4 @@
-package com.pessimistic.aoc2024;
+package com.pessimistic.aoc2024.util;
 
 import org.apache.commons.io.Charsets;
 import org.apache.commons.io.IOUtils;

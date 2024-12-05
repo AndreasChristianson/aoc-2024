@@ -1,8 +1,8 @@
 package com.pessimistic.aoc2024.day3;
 
-import com.pessimistic.aoc2024.FileUtils;
-import com.pessimistic.aoc2024.NullUtils;
-import com.pessimistic.aoc2024.TextUtils;
+import com.pessimistic.aoc2024.util.FileUtils;
+import com.pessimistic.aoc2024.util.NullUtils;
+import com.pessimistic.aoc2024.util.TextUtils;
 
 public class Day3 {
     private Day3() {

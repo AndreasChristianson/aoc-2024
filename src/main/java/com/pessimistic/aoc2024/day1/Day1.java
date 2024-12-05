@@ -1,7 +1,7 @@
 package com.pessimistic.aoc2024.day1;
 
-import com.pessimistic.aoc2024.FileUtils;
-import com.pessimistic.aoc2024.TextUtils;
+import com.pessimistic.aoc2024.util.FileUtils;
+import com.pessimistic.aoc2024.util.TextUtils;
 
 import java.util.List;
 import java.util.function.Function;

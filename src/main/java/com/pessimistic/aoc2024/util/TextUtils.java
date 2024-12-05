@@ -1,4 +1,4 @@
-package com.pessimistic.aoc2024;
+package com.pessimistic.aoc2024.util;
 
 import java.util.*;
 import java.util.function.Function;

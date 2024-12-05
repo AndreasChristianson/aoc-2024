@@ -1,4 +1,4 @@
-package com.pessimistic.aoc2024;
+package com.pessimistic.aoc2024.util;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
