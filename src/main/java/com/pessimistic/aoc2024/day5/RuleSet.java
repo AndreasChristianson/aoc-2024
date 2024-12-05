@@ -36,8 +36,8 @@ public class RuleSet {
                 var second = rule.second();
                 int secondPosition = clone.getPageIndex(second).orElse(Integer.MAX_VALUE);
                 if (secondPosition < i) {
-                    clone.swap(i,secondPosition);
-                    i=0;
+                    clone.swap(i, secondPosition);
+                    i = 0;
                     break;
                 }
             }

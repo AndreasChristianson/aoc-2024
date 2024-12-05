@@ -15,24 +15,28 @@ public class Day5 {
         var lines = FileUtils.readTestFile(fileName);
         var rules = getRuleSet(lines);
         var printings = getPrintings(lines);
-        return printings.stream().filter(rules::validate).map(Printing::getMiddle).mapToInt(Page::number).sum();
+        return printings.stream()
+                .filter(rules::validate)
+                .map(Printing::getMiddle)
+                .mapToInt(Page::number)
+                .sum();
     }
 
     private static List<Printing> getPrintings(List<String> lines) {
-        List<Printing> printings= new ArrayList<>();
+        List<Printing> printings = new ArrayList<>();
 
         for (var line : lines) {
-            if(line.matches("(\\d+,)*\\d+")){
+            if (line.matches("(\\d+,)*\\d+")) {
                 printings.add(Printing.parse(line));
             }
         }
-        return  printings;
+        return printings;
     }
 
     private static RuleSet getRuleSet(List<String> lines) {
         List<Rule> rules = new ArrayList<>();
         for (var line : lines) {
-            if(line.matches("\\d+\\|\\d+")){
+            if (line.matches("\\d+\\|\\d+")) {
                 rules.add(Rule.parse(line));
             }
         }
@@ -44,8 +48,12 @@ public class Day5 {
         var lines = FileUtils.readTestFile(fileName);
         var rules = getRuleSet(lines);
         var printings = getPrintings(lines);
-        return printings.stream().filter(printing -> !rules.validate(printing))
-                .map(rules::fixOrder).map(Printing::getMiddle).mapToInt(Page::number).sum();
+        return printings.stream()
+                .filter(printing -> !rules.validate(printing))
+                .map(rules::fixOrder)
+                .map(Printing::getMiddle)
+                .mapToInt(Page::number)
+                .sum();
     }
 
 }
