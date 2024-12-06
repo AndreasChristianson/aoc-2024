@@ -149,4 +149,8 @@ public class Grid<K, F> {
     public boolean hasFlag(F flag) {
         return pointsByFlag.containsKey(flag);
     }
+
+    public Set<Point> getFlagPoints(F flag) {
+        return pointsByFlag.getOrDefault(flag, Collections.emptySet());
+    }
 }
