@@ -18,7 +18,7 @@ public class Day6 {
     }
 
     private static void march(Grid<MapObject, String> grid) {
-        var currentPosition = grid.find(MapObject.GUARD).orElseThrow();
+        var currentPosition = grid.find(MapObject.GUARD).getFirst();
         var direction = Direction.N;
         while (grid.getRange().contains(currentPosition)) {
             grid.flag(currentPosition, "reached");
@@ -41,7 +41,7 @@ public class Day6 {
         var lines = FileUtils.readTestFile(fileName);
         var initialGrid = Grid.<MapObject, String>of(lines, MapObject::charToItem);
         march(initialGrid);
-        var guardStartPosition = initialGrid.find(MapObject.GUARD).orElseThrow();
+        var guardStartPosition = initialGrid.find(MapObject.GUARD).getFirst();
         return initialGrid.getFlagPoints("reached").stream()
                 .filter(point -> !point.equals(guardStartPosition))
                 .parallel()

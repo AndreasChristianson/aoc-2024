@@ -6,6 +6,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import java.util.stream.LongStream;
 import java.util.stream.Stream;
 
 public class TextUtils {
@@ -16,8 +17,8 @@ public class TextUtils {
         return Arrays.stream(input.trim().split("\\s+"));
     }
 
-    public static IntStream toIntStream(String input) {
-        return splitOnWhitespace(input).mapToInt(Integer::parseInt);
+    public static LongStream toLongStream(String input) {
+        return splitOnWhitespace(input).mapToLong(Long::parseLong);
     }
 
     public static Stream<Map<String, String>> allMatches(String input, String regex) {

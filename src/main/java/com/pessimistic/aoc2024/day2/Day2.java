@@ -10,6 +10,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.IntStream;
+import java.util.stream.LongStream;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
@@ -17,14 +18,15 @@ public class Day2 {
     private Day2() {
     }
 
-    private static Stream<IntStream> readFile(String fileName) {
+    private static Stream<LongStream> readFile(String fileName) {
         var lines = FileUtils.readTestFile(fileName);
         return lines.stream()
-                .map(TextUtils::toIntStream);
+                .map(TextUtils::toLongStream);
     }
 
     public static long safeCount(String fileName) {
         return readFile(fileName)
+                .map(LongStream::boxed)
                 .map(PatternUtils::deltas)
                 .filter(isMagnitudeSmallerThan(4))
                 .filter(isMagnitudeLargerThan(0))
@@ -32,17 +34,17 @@ public class Day2 {
                 .count();
     }
 
-    private static Predicate<List<Integer>> isMagnitudeSmallerThan(int max) {
+    private static Predicate<List<Long>> isMagnitudeSmallerThan(long max) {
         return ints -> ints.stream().allMatch(i -> Math.abs(i) < max);
     }
 
-    private static Predicate<List<Integer>> isMagnitudeLargerThan(int min) {
+    private static Predicate<List<Long>> isMagnitudeLargerThan(long min) {
         return ints -> ints.stream().allMatch(i -> Math.abs(i) > min);
     }
 
     public static long safeCountWithDamper(String fileName) {
         return readFile(fileName)
-                .map(IntStream::boxed)
+                .map(LongStream::boxed)
                 .map(CombinatoricsUtils.pickLessThanTotal(1))
                 .filter(intStreamStream -> intStreamStream
                         .map(PatternUtils::deltas)
@@ -52,9 +54,9 @@ public class Day2 {
                 .count();
     }
 
-    private static Stream<IntStream> damper(IntStream intStream) {
-        var asList = intStream.boxed().toList();
-        return StreamSupport.stream(Combinations.of(asList.size(), asList.size() - 1).spliterator(), false)
-                .map(indices -> Arrays.stream(indices).map(asList::get));
-    }
+//    private static Stream<IntStream> damper(LongStream intStream) {
+//        var asList = intStream.boxed().toList();
+//        return StreamSupport.stream(Combinations.of(asList.size(), asList.size() - 1).spliterator(), false)
+//                .map(indices -> Arrays.stream(indices).map(asList::get));
+//    }
 }

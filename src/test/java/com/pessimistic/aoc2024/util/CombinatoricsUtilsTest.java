@@ -25,4 +25,51 @@ class CombinatoricsUtilsTest {
         Assertions.assertThat(result)
                 .hasSize(1);
     }
+
+    @Test
+    void permutations2x1() {
+        var result = CombinatoricsUtils.generatePermutations(List.of("a", "b"), 1);
+        Assertions.assertThat(result)
+                .hasSize(2)
+                .containsExactly(List.of("a"), List.of("b"));
+    }
+
+    @Test
+    void permutations2x2() {
+        var result = CombinatoricsUtils.generatePermutations(List.of("a", "b"), 2);
+        Assertions.assertThat(result)
+                .hasSize(4)
+                .containsExactly(
+                        List.of("a", "a"),
+                        List.of("a", "b"),
+                        List.of("b", "a"),
+                        List.of("b", "b")
+                );
+    }
+
+    @Test
+    void permutations2x5() {
+        var result = CombinatoricsUtils.generatePermutations(List.of("a", "b"), 5);
+        Assertions.assertThat(result)
+                .hasSize((int) Math.pow(2, 5))
+                .last()
+                .isEqualTo(List.of("b","b","b","b","b"))
+        ;
+    }
+
+    @Test
+    void permutations6x6() {
+        var result = CombinatoricsUtils.generatePermutations(List.of(1,2,3,4,5,6), 6);
+        Assertions.assertThat(result)
+                .hasSize((int) Math.pow(6, 6))
+        ;
+    }
+
+    @Test
+    void permutations3x11() {
+        var result = CombinatoricsUtils.generatePermutations(List.of(1,2,3), 11);
+        Assertions.assertThat(result)
+                .hasSize(177147)
+        ;
+    }
 }

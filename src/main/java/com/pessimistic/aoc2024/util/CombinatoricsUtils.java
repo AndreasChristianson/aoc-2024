@@ -2,6 +2,7 @@ package com.pessimistic.aoc2024.util;
 
 import org.apache.commons.numbers.combinatorics.Combinations;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Function;
@@ -34,4 +35,12 @@ public class CombinatoricsUtils {
         };
     }
 
+    public static <K> Stream<List<K>> generatePermutations(List<K> possibleValues, int positionCount) {
+        if (positionCount == 1) {
+            return possibleValues.stream().map(item -> new ArrayList<>(List.of(item)));
+        }
+        return possibleValues.stream()
+                .flatMap(possibleValue -> generatePermutations(possibleValues, positionCount - 1)
+                        .peek(permutationList -> permutationList.add(possibleValue)));
+    }
 }

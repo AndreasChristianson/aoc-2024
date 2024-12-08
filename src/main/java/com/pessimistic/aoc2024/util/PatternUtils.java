@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.IntStream;
+import java.util.stream.LongStream;
 import java.util.stream.Stream;
 
 public class PatternUtils {
@@ -16,7 +17,7 @@ public class PatternUtils {
      * @param ints
      * @return
      */
-    public static boolean isSameSignOrZero(List<Integer> ints) {
+    public static boolean isSameSignOrZero(List<Long> ints) {
         var nonZeroSigns = ints.stream()
                 .map(Math::signum)
                 .filter(sign -> sign != 0)
@@ -35,22 +36,22 @@ public class PatternUtils {
      * @param intStream
      * @return
      */
-    public static List<Integer> deltas(IntStream intStream) {
-        return deltas(intStream.boxed());
+    public static List<Long> deltas(LongStream longStream) {
+        return deltas(longStream.boxed());
     }
 
     /**
      * gets the change between elements of an int stream
      *
-     * @param intStream
+     * @param longStream
      * @return
      */
-    public static List<Integer> deltas(Stream<Integer> intStream) {
-        var asList = intStream.toList();
+    public static List<Long> deltas(Stream<Long> longStream) {
+        var asList = longStream.toList();
         if (asList.size() < 2) {
             return Collections.emptyList();
         }
-        var ret = new ArrayList<Integer>();
+        var ret = new ArrayList<Long>();
         for (int i = 1; i < asList.size(); i++) {
             ret.add(asList.get(i) - asList.get(i - 1));
         }
