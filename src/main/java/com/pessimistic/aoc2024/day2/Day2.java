@@ -49,10 +49,4 @@ public class Day2 {
                         .anyMatch(PatternUtils::isSameSignOrZero))
                 .count();
     }
-
-//    private static Stream<IntStream> damper(LongStream intStream) {
-//        var asList = intStream.boxed().toList();
-//        return StreamSupport.stream(Combinations.of(asList.size(), asList.size() - 1).spliterator(), false)
-//                .map(indices -> Arrays.stream(indices).map(asList::get));
-//    }
 }
