@@ -23,20 +23,6 @@ public class AntennaGrid extends Grid<Antenna, String> {
         return new AntennaGrid(itemsMap, collectRange(lines));
     }
 
-    public Stream<Point> getAntiNodes(Antenna antenna) {
-        var antennaPoints = getItemPoints(antenna);
-        return CombinatoricsUtils.pick(antennaPoints, 2)
-                .map(Stream::toList)
-                .flatMap(pointPair -> getAntiNodes(pointPair.getFirst(), pointPair.getLast()));
-    }
-
-    public Stream<Point> getAntiNodes(Point left, Point right) {
-        var offset = left.delta(right);
-        var gridRange = getRange();
-        return Stream.of(right.subtract(offset), left.add(offset))
-                .filter(gridRange::contains);
-    }
-
     public Stream<Line> getAntiNodeLines(Antenna antenna) {
         var antennaPoints = getItemPoints(antenna);
         return CombinatoricsUtils.pick(antennaPoints, 2)

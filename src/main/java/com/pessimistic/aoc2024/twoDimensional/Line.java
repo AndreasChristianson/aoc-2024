@@ -4,9 +4,21 @@ import java.util.ArrayList;
 import java.util.stream.Stream;
 
 public record Line(
-        Point p1,
-        Point p2
+        Point originPoint,
+        Point unitPoint
 ) {
+
+    public Point delta() {
+        return unitPoint.subtract(originPoint);
+    }
+    /**
+     * note that n=1 always returns the unit point
+     * @param n
+     * @return
+     */
+    public Point getNthPoint(int n) {
+        return originPoint.add(delta().scale(n));
+    }
     /**
      * assuming this line is composed of two wave crest points, deduce all other wave crest points in a range
      *
@@ -15,20 +27,20 @@ public record Line(
      */
     public Stream<Point> propagateWaveCrestsWithinRange(Range2D range) {
         var collectedPoints = new ArrayList<Point>();
-        collectedPoints.add(p1);
-        collectedPoints.add(p2);
-        var offset = p1.delta(p2);
-        //forward
-        var nextPoint = p2.subtract(offset);
-        while (range.contains(nextPoint)) {
-            collectedPoints.add(nextPoint);
-            nextPoint = nextPoint.subtract(offset);
-        }
+        collectedPoints.add(originPoint);
+        collectedPoints.add(unitPoint);
+//        var offset = originPoint.delta(unitPoint);
         //backwards
-        nextPoint = p1.add(offset);
-        while (range.contains(nextPoint)) {
-            collectedPoints.add(nextPoint);
-            nextPoint = nextPoint.add(offset);
+        var distance = -1;
+        while (range.contains(getNthPoint(distance))) {
+            collectedPoints.add(getNthPoint(distance));
+            distance--;
+        }
+        //forwards
+        distance = 2;
+        while (range.contains(getNthPoint(distance))) {
+            collectedPoints.add(getNthPoint(distance));
+            distance++;
         }
         return collectedPoints.stream();
     }

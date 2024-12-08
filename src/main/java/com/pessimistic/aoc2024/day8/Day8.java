@@ -3,6 +3,7 @@ package com.pessimistic.aoc2024.day8;
 import com.pessimistic.aoc2024.util.FileUtils;
 
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 
 public class Day8 {
@@ -13,7 +14,9 @@ public class Day8 {
         var lines = FileUtils.readTestFile(fileName);
         var grid = AntennaGrid.toAntennaGrid(lines, Antenna::charToItem);
         var antiNodes = grid.getUniqueItems().stream()
-                .flatMap(grid::getAntiNodes)
+                .flatMap(grid::getAntiNodeLines)
+                .flatMap(line -> Stream.of(line.getNthPoint(-1), line.getNthPoint(2)))
+                .filter(grid.getRange()::contains)
                 .collect(Collectors.toSet());
         System.out.println(grid.toString(point -> antiNodes.contains(point) ? "#" : null));
         return antiNodes.size();

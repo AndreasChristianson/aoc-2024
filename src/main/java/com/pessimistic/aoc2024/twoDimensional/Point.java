@@ -20,4 +20,8 @@ public record Point(
     public Point subtract(Point delta) {
         return new Point(Row - delta.Row, Col - delta.Col);
     }
+
+    public Point scale(int n) {
+        return new Point(Row * n, Col * n);
+    }
 }
