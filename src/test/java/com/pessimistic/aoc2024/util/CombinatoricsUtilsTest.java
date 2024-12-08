@@ -53,13 +53,13 @@ class CombinatoricsUtilsTest {
         Assertions.assertThat(result)
                 .hasSize((int) Math.pow(2, 5))
                 .last()
-                .isEqualTo(List.of("b","b","b","b","b"))
+                .isEqualTo(List.of("b", "b", "b", "b", "b"))
         ;
     }
 
     @Test
     void permutations6x6() {
-        var result = CombinatoricsUtils.generatePermutations(List.of(1,2,3,4,5,6), 6);
+        var result = CombinatoricsUtils.generatePermutations(List.of(1, 2, 3, 4, 5, 6), 6);
         Assertions.assertThat(result)
                 .hasSize((int) Math.pow(6, 6))
         ;
@@ -67,7 +67,7 @@ class CombinatoricsUtilsTest {
 
     @Test
     void permutations3x11() {
-        var result = CombinatoricsUtils.generatePermutations(List.of(1,2,3), 11);
+        var result = CombinatoricsUtils.generatePermutations(List.of(1, 2, 3), 11);
         Assertions.assertThat(result)
                 .hasSize(177147)
         ;

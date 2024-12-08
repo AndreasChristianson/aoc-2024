@@ -9,7 +9,7 @@ public record Point(
         return new Point(row, col);
     }
 
-    public Point add (Point delta){
+    public Point add(Point delta) {
         return new Point(Row + delta.Row, Col + delta.Col);
     }
 

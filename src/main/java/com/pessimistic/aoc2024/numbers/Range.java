@@ -28,6 +28,6 @@ public record Range(
     }
 
     public int diff() {
-        return max - min +1;
+        return max - min + 1;
     }
 }

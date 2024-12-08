@@ -4,15 +4,11 @@ import com.pessimistic.aoc2024.util.CombinatoricsUtils;
 import com.pessimistic.aoc2024.util.FileUtils;
 import com.pessimistic.aoc2024.util.PatternUtils;
 import com.pessimistic.aoc2024.util.TextUtils;
-import org.apache.commons.numbers.combinatorics.Combinations;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
-import java.util.stream.IntStream;
 import java.util.stream.LongStream;
 import java.util.stream.Stream;
-import java.util.stream.StreamSupport;
 
 public class Day2 {
     private Day2() {

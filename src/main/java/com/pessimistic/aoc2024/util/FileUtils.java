@@ -43,6 +43,7 @@ public class FileUtils {
             throw new RuntimeException(e);
         }
     }
+
     public static String readWholeTestFile(String fileName) {
         return readWholeFile("src/test/resources/%s".formatted(fileName));
     }
