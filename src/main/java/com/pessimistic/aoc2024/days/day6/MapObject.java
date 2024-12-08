@@ -1,4 +1,4 @@
-package com.pessimistic.aoc2024.day6;
+package com.pessimistic.aoc2024.days.day6;
 
 public enum MapObject {
     OBSTACLE, GUARD;

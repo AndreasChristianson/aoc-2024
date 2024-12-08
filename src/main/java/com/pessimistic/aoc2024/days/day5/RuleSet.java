@@ -1,4 +1,4 @@
-package com.pessimistic.aoc2024.day5;
+package com.pessimistic.aoc2024.days.day5;
 
 import java.util.Collections;
 import java.util.List;

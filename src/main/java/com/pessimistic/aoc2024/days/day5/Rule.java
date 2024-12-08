@@ -1,4 +1,4 @@
-package com.pessimistic.aoc2024.day5;
+package com.pessimistic.aoc2024.days.day5;
 
 public record Rule(
         Page first,

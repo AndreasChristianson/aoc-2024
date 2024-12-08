@@ -1,4 +1,4 @@
-package com.pessimistic.aoc2024.day8;
+package com.pessimistic.aoc2024.days.day8;
 
 public record Antenna(
         String callsign

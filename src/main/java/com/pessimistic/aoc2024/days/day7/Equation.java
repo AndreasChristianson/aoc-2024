@@ -1,4 +1,4 @@
-package com.pessimistic.aoc2024.day7;
+package com.pessimistic.aoc2024.days.day7;
 
 import com.pessimistic.aoc2024.numbers.Operator;
 import com.pessimistic.aoc2024.util.CombinatoricsUtils;

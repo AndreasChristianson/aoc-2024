@@ -1,4 +1,4 @@
-package com.pessimistic.aoc2024.day8;
+package com.pessimistic.aoc2024.days.day8;
 
 import com.pessimistic.aoc2024.twoDimensional.Grid;
 import com.pessimistic.aoc2024.twoDimensional.Line;

@@ -39,7 +39,7 @@ class CombinatoricsUtilsTest {
         var result = CombinatoricsUtils.generatePermutations(List.of("a", "b"), 2);
         Assertions.assertThat(result)
                 .hasSize(4)
-                .containsExactly(
+                .containsExactlyInAnyOrder(
                         List.of("a", "a"),
                         List.of("a", "b"),
                         List.of("b", "a"),

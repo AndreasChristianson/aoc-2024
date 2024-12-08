@@ -1,4 +1,4 @@
-package com.pessimistic.aoc2024.day4;
+package com.pessimistic.aoc2024.days.day4;
 
 import com.pessimistic.aoc2024.util.FileUtils;
 import com.pessimistic.aoc2024.util.TextUtils;
