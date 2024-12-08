@@ -5,12 +5,12 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-class TwoDimensionalUtilsTest {
+class TwoDimensionalTextUtilsTest {
 
     @Test
     void rotate45() {
 
-        var result = TwoDimensionalUtils.rotate45(List.of(
+        var result = TwoDimensionalTextUtils.rotate45(List.of(
                 List.of(1, 2, 3, 4),
                 List.of(5, 6, 7, 8),
                 List.of(9, 10, 11, 12),
@@ -32,7 +32,7 @@ class TwoDimensionalUtilsTest {
     @Test
     void rotate90() {
 
-        var result = TwoDimensionalUtils.rotate90(List.of(
+        var result = TwoDimensionalTextUtils.rotate90(List.of(
                 List.of(1, 2, 3, 4),
                 List.of(5, 6, 7, 8),
                 List.of(9, 10, 11, 12),
@@ -51,7 +51,7 @@ class TwoDimensionalUtilsTest {
     @Test
     void rotateEmpty() {
 
-        var result = TwoDimensionalUtils.rotate90(List.of(
+        var result = TwoDimensionalTextUtils.rotate90(List.of(
         ));
         Assertions.assertThat(result)
                 .isEmpty();

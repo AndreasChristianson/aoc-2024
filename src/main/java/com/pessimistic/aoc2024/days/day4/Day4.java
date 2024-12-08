@@ -2,7 +2,7 @@ package com.pessimistic.aoc2024.days.day4;
 
 import com.pessimistic.aoc2024.util.FileUtils;
 import com.pessimistic.aoc2024.util.TextUtils;
-import com.pessimistic.aoc2024.util.TwoDimensionalUtils;
+import com.pessimistic.aoc2024.util.TwoDimensionalTextUtils;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -16,14 +16,14 @@ public class Day4 {
     public static long star1(String fileName) {
         var lines = FileUtils.readTestFile(fileName);
         var chars = lines.stream().map(line -> Arrays.asList(line.split(""))).toList();
-        var rotated45 = TwoDimensionalUtils.rotate45(chars);
-        var rotated90 = TwoDimensionalUtils.rotate90(chars);
-        var rotated135 = TwoDimensionalUtils.rotate45(rotated90);
-        var rotated180 = TwoDimensionalUtils.rotate90(rotated90);
-        var rotated225 = TwoDimensionalUtils.rotate45(rotated180);
-        var rotated270 = TwoDimensionalUtils.rotate90(rotated180);
-        var rotated315 = TwoDimensionalUtils.rotate45(rotated270);
-        var rotated360 = TwoDimensionalUtils.rotate90(rotated270);
+        var rotated45 = TwoDimensionalTextUtils.rotate45(chars);
+        var rotated90 = TwoDimensionalTextUtils.rotate90(chars);
+        var rotated135 = TwoDimensionalTextUtils.rotate45(rotated90);
+        var rotated180 = TwoDimensionalTextUtils.rotate90(rotated90);
+        var rotated225 = TwoDimensionalTextUtils.rotate45(rotated180);
+        var rotated270 = TwoDimensionalTextUtils.rotate90(rotated180);
+        var rotated315 = TwoDimensionalTextUtils.rotate45(rotated270);
+        var rotated360 = TwoDimensionalTextUtils.rotate90(rotated270);
         var withRotation = List.of(
                 rotated360,
                 rotated45,

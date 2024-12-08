@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.BiFunction;
 
-public class TwoDimensionalUtils {
+public class TwoDimensionalTextUtils {
     /**
      * ==>>        1
      * 123         42
