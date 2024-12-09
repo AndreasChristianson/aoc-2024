@@ -1,11 +1,7 @@
 package com.pessimistic.aoc2024.days.day9;
 
-import com.pessimistic.aoc2024.days.day8.AntennaGrid;
 import com.pessimistic.aoc2024.util.FileUtils;
 import com.pessimistic.aoc2024.util.TextUtils;
-
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 
 public class Day9 {
@@ -13,15 +9,19 @@ public class Day9 {
     }
 
     public static long star1(String fileName) {
-        var lines = FileUtils.readTestFile(fileName);
-
-        return TextUtils.toLongStream(lines.getFirst()).findAny().orElseThrow();
+        var line = FileUtils.readWholeTestFile(fileName);
+        var fileSystem = FileSystem.parse(line);
+        fileSystem.defragment();
+        System.out.println(fileSystem);
+        return fileSystem.checksum();
     }
 
 
     public static long star2(String fileName) {
-        var lines = FileUtils.readTestFile(fileName);
-
-        return TextUtils.toLongStream(lines.getFirst()).findAny().orElseThrow();
+        var line = FileUtils.readWholeTestFile(fileName);
+        var fileSystem = FileSystem.parse(line);
+        fileSystem.defragmentFiles();
+        System.out.println(fileSystem);
+        return fileSystem.checksum();
     }
 }
