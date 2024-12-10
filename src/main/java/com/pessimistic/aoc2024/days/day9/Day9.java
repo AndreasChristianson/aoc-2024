@@ -1,7 +1,6 @@
 package com.pessimistic.aoc2024.days.day9;
 
 import com.pessimistic.aoc2024.util.FileUtils;
-import com.pessimistic.aoc2024.util.TextUtils;
 
 
 public class Day9 {
@@ -12,7 +11,6 @@ public class Day9 {
         var line = FileUtils.readWholeTestFile(fileName);
         var fileSystem = FileSystem.parse(line);
         fileSystem.defragment();
-        System.out.println(fileSystem);
         return fileSystem.checksum();
     }
 
@@ -21,7 +19,6 @@ public class Day9 {
         var line = FileUtils.readWholeTestFile(fileName);
         var fileSystem = FileSystem.parse(line);
         fileSystem.defragmentFiles();
-        System.out.println(fileSystem);
         return fileSystem.checksum();
     }
 }
