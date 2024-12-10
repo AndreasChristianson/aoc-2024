@@ -103,6 +103,8 @@ public class FileSystem {
                 if (space.length() != file.length()) {// leftover space
                     positionToFile.put(position + file.length(), new FreeSpace(space.length() - file.length()));
                 }
+            }else{
+                positionToFile.remove(i);
             }
 
         }
