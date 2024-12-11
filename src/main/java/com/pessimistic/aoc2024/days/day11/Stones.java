@@ -1,11 +1,7 @@
 package com.pessimistic.aoc2024.days.day11;
 
-import com.pessimistic.aoc2024.twoDimensional.Point;
-
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
-import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.LongStream;
@@ -51,7 +47,7 @@ public class Stones {
             var stone = entry.getKey();
             var count = entry.getValue();
             var newStones = stone.blink();
-            for (var newStone: newStones){
+            for (var newStone : newStones) {
                 var currentStoneCount = newStoneCounts.getOrDefault(newStone, 0L);
                 newStoneCounts.put(newStone, currentStoneCount + count);
             }
