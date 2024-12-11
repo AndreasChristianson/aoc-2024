@@ -1,7 +1,16 @@
 package com.pessimistic.aoc2024.twoDimensional;
 
+import java.util.List;
+
 public enum Direction {
     N, W, E, S;
+
+
+    private static final Iterable<Direction> CARDINALS = List.of(N, W, E, S);
+
+    public static Iterable<Direction> cardinalDirections() {
+        return CARDINALS;
+    }
 
     public Point getDelta() {
         return switch (this) {

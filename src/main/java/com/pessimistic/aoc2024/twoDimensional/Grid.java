@@ -67,6 +67,9 @@ public class Grid<K, F> {
         return new Range2D(new Range(0, lines.size() - 1), new Range(0, maxCol));
     }
 
+    /**
+     * finds a point occupied by the given item
+     */
     public List<Point> find(K item) {
         return pointsByItem.getOrDefault(item, Collections.emptyList());
     }
@@ -75,6 +78,9 @@ public class Grid<K, F> {
         return range;
     }
 
+    /**
+     * gets the item at a given point
+     */
     public Optional<K> get(Point point) {
         return Optional.ofNullable(itemsByPoint.get(point));
     }
@@ -101,48 +107,63 @@ public class Grid<K, F> {
     }
 
     public String toStringWithFlag(F flag, String s) {
-        var ret = new StringBuilder();
-        for (var row : range.rowRange()) {
-            for (var col : range.colRange()) {
-                if (hasFlag(flag, Point.of(row, col))) {
-                    ret.append(s);
-                } else {
-                    ret.append(PLACEHOLDER);
-                }
-            }
-            ret.append("\n");
-        }
-        return ret.toString();
+        return toString((point) -> hasFlag(flag, point) ? s : null);
     }
 
+    /**
+     * checks if a given point has a given flag
+     */
     public boolean hasFlag(F flag, Point point) {
         return Optional.ofNullable(pointsByFlag.get(flag))
                 .map(set -> set.contains(point))
                 .orElse(false);
     }
 
+    /**
+     * counts the number of unique points with a given flag
+     */
     public long flagCount(F flag) {
         return Optional.ofNullable(pointsByFlag.get(flag))
                 .map(Set::size)
                 .orElse(0);
     }
 
+    /**
+     * sets a flag for a given point
+     */
     public void flag(Point point, F flag) {
+        validatePoint(point);
         pointsByFlag.putIfAbsent(flag, new HashSet<>());
         pointsByFlag.get(flag).add(point);
         flagsByPoint.putIfAbsent(point, new HashSet<>());
         flagsByPoint.get(point).add(flag);
     }
 
+    private void validatePoint(Point point) {
+        assert point != null;
+        assert getRange().contains(point);
+    }
+
+    /**
+     * creates a deep copy of this grid
+     */
     public Grid<K, F> copy() {
         return new Grid<>(new HashMap<>(itemsByPoint), range);
     }
 
+    /**
+     * mutates this grid setting one item at a point
+     */
     public void set(Point point, K item) {
+        validatePoint(point);
         itemsByPoint.put(point, item);
         pointsByItem.putIfAbsent(item, new ArrayList<>());
         pointsByItem.get(item).add(point);
     }
+
+    /**
+     * check if a grid has a flag, anywhere
+     */
 
     public boolean hasFlag(F flag) {
         return pointsByFlag.containsKey(flag);
