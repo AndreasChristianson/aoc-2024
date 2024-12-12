@@ -1,10 +1,16 @@
 package com.pessimistic.aoc2024.twoDimensional;
 
+import com.pessimistic.aoc2024.days.day12.Plant;
 import com.pessimistic.aoc2024.numbers.Range;
 
 import java.util.*;
+import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+import static java.util.Collections.emptyList;
+import static java.util.Collections.emptySet;
 
 public class Grid<K, F> {
     private static final String PLACEHOLDER = " ";
@@ -179,5 +185,23 @@ public class Grid<K, F> {
 
     public List<Point> getItemPoints(K item) {
         return pointsByItem.get(item);
+    }
+
+    public Set<Point> traverse(Point start, Iterable<Direction> adjacentDirections, BiFunction<K, K, Boolean> traverseAllowed, F markerFlag) {
+        if (hasFlag(markerFlag, start)) {
+            return emptySet();
+        }
+        var current = get(start).orElseThrow();
+
+        var ret = new HashSet<Point>();
+        flag(start, markerFlag);
+        ret.add(start);
+        for (Direction direction : adjacentDirections) {
+            var nextPoint = start.add(direction.getDelta());
+            get(nextPoint)
+                    .filter(next -> traverseAllowed.apply(next, current))
+                    .ifPresent(_ -> ret.addAll(traverse(nextPoint, adjacentDirections, traverseAllowed, markerFlag)));
+        }
+        return ret;
     }
 }

@@ -1,14 +1,15 @@
 package com.pessimistic.aoc2024.twoDimensional;
 
 import java.util.List;
+import java.util.function.Function;
 
 public enum Direction {
     N, W, E, S;
 
 
-    private static final Iterable<Direction> CARDINALS = List.of(N, W, E, S);
+    private static final List<Direction> CARDINALS = List.of(N, W, E, S);
 
-    public static Iterable<Direction> cardinalDirections() {
+    public static List<Direction> cardinalDirections() {
         return CARDINALS;
     }
 
@@ -27,6 +28,13 @@ public enum Direction {
             case S -> W;
             case W -> N;
             case E -> S;
+        };
+    }
+
+    public Function<Point,Integer> offsetFunction() {
+        return switch (this) {
+            case N, S -> Point::Row;
+            case W, E -> Point::Col;
         };
     }
 }
