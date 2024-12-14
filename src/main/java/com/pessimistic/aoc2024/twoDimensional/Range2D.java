@@ -3,7 +3,6 @@ package com.pessimistic.aoc2024.twoDimensional;
 import com.pessimistic.aoc2024.numbers.Range;
 
 import java.util.Iterator;
-import java.util.Optional;
 
 public record Range2D(
         Range rowRange,
@@ -34,10 +33,5 @@ public record Range2D(
                 return ret;
             }
         };
-    }
-
-    public boolean contains(FloatPoint floatPoint) {
-        return colRange.contains(floatPoint.y()) &&
-                rowRange.contains(floatPoint.x());
     }
 }

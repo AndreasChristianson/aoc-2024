@@ -51,11 +51,11 @@ class LineTest {
         Assertions.assertThat(new Line(new Point(0, 0), new Point(5, 5))
                         .intersect(new Line(new Point(5, 0), new Point(0, 5))))
                 .get()
-                .isEqualTo(new FloatPoint(2.5, 2.5));
+                .isEqualTo(new Point(2, 2));
 
         Assertions.assertThat(new Line(new Point(-60, 17), new Point(20, 21))
                         .intersect(new Line(new Point(0, -34), new Point(2, 34))))
                 .get()
-                .isEqualTo(new FloatPoint(1.59057, 20.07953));
+                .isEqualTo(new Point(1,20)); //(1.59057, 20.07953)
     }
 }
