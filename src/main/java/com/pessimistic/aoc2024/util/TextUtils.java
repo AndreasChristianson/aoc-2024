@@ -37,13 +37,4 @@ public class TextUtils {
                 .matcher(input);
         return matcher.results().count();
     }
-
-    public static void printGrid(List<List<String>> grid) {
-        for (List<String> line : grid) {
-            for (var s : line) {
-                System.out.print(s);
-            }
-            System.out.println();
-        }
-    }
 }

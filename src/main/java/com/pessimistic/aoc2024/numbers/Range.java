@@ -3,13 +3,13 @@ package com.pessimistic.aoc2024.numbers;
 import java.util.Iterator;
 
 public record Range(
-        int min, //inclusive
-        int max //inclusive
-) implements Iterable<Integer> {
+        long min, //inclusive
+        long max //inclusive
+) implements Iterable<Long> {
     @Override
-    public Iterator<Integer> iterator() {
-        return new Iterator<Integer>() {
-            private int current = min;
+    public Iterator<Long> iterator() {
+        return new Iterator<Long>() {
+            private long current = min;
 
             @Override
             public boolean hasNext() {
@@ -17,7 +17,7 @@ public record Range(
             }
 
             @Override
-            public Integer next() {
+            public Long next() {
                 return current++;
             }
         };
@@ -27,7 +27,11 @@ public record Range(
         return i >= min && i <= max;
     }
 
-    public int diff() {
+    public long diff() {
         return max - min + 1;
+    }
+
+    public boolean contains(double d) {
+        return d >= min && d <= max;
     }
 }
