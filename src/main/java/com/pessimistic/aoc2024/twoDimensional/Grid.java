@@ -1,22 +1,20 @@
 package com.pessimistic.aoc2024.twoDimensional;
 
-import com.pessimistic.aoc2024.days.day12.Plant;
 import com.pessimistic.aoc2024.numbers.Range;
 
 import java.util.*;
 import java.util.function.BiFunction;
 import java.util.function.Function;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
-import static java.util.Collections.emptyList;
 import static java.util.Collections.emptySet;
 
-public class Grid<K, F> {
+public class Grid<K, F extends Comparable<F>> {
     private static final String PLACEHOLDER = " ";
     private final Map<Point, K> itemsByPoint;
     private final Map<K, List<Point>> pointsByItem;
-    private final Map<F, Set<Point>> pointsByFlag;
+    private final SortedMap<F, Set<Point>> pointsByFlag;
     private final Map<Point, Set<F>> flagsByPoint;
     private final Range2D range;
 
@@ -34,7 +32,7 @@ public class Grid<K, F> {
                 ));
         this.range = range;
         flagsByPoint = new HashMap<>();
-        pointsByFlag = new HashMap<>();
+        pointsByFlag = new TreeMap<>();
     }
 
     @Override
@@ -42,7 +40,7 @@ public class Grid<K, F> {
         return toString(_ -> null);
     }
 
-    public static <K, F> Grid<K, F> of(List<String> lines, Function<Character, K> charClassifier) {
+    public static <K, F extends Comparable<F>> Grid<K, F> of(List<String> lines, Function<Character, K> charClassifier) {
         var itemsMap = classifyToMap(indexChars(lines), charClassifier);
         return new Grid<>(itemsMap, collectRange(lines));
     }
@@ -204,4 +202,70 @@ public class Grid<K, F> {
         }
         return ret;
     }
+
+    public Map<Point, Integer> bfs(
+            Point start,
+//            Point finish,
+            Function<K, Integer> costFunction,
+            List<Direction> adjacentDirections,
+            Predicate<List<Point>> pathValidator
+    ) {
+        var distances = new HashMap<Point, Integer>();
+        distances.put(start, 0);
+        var foundPoints = new LinkedList<Point>();
+        foundPoints.add(start);
+        while (!foundPoints.isEmpty()) {
+            var current = foundPoints.remove();
+            for (var direction : adjacentDirections) {
+                var nextPoint = current.add(direction.getDelta());
+                var maybeItem = get(nextPoint);
+                if (maybeItem.isPresent()) {
+                    var item = maybeItem.get();
+                    var cost = costFunction.apply(item);
+                    var totalCost = cost + distances.get(current);
+                    var currentCost = distances.getOrDefault(nextPoint, Integer.MAX_VALUE);
+                    if (totalCost < currentCost) {
+                        distances.put(nextPoint, totalCost);
+//                        var path = findPath(distances, nextPoint, costFunction, adjacentDirections);
+//                        if (pathValidator.test(path)) {
+                            foundPoints.addLast(nextPoint);
+//                        } else {
+//                            distances.put(nextPoint, currentCost);
+//                        }
+                    }
+                }
+            }
+        }
+        return distances;
+    }
+
+//    public List<Point> findPath(
+//            Map<Point, Integer> distances,
+//            Point finish,
+//            Function<K, Integer> costFunction,
+//            List<Direction> adjacentDirections
+//    ) {
+//        var ret = new ArrayList<Point>();
+//
+//        var current = finish;
+//        ret.add(finish);
+//        while (distances.get(current) != 0) {
+////            var minDistance = Integer.MAX_VALUE;
+////            Point minDistancePoint = null;
+//            for (var direction : adjacentDirections) {
+//                var nextPoint = current.add(direction.getDelta());
+//                var nextDistance = distances.getOrDefault(nextPoint, Integer.MAX_VALUE);
+//                if (nextDistance == distances.get(current)- costFunction.apply(get(current).orElseThrow())) {
+//                    ret.add(nextPoint);
+//                    current = nextPoint;
+//                    break;
+//                }
+//            }
+////            assert minDistancePoint != null;
+////            ret.add(minDistancePoint);
+////            current = minDistancePoint;
+//        }
+//
+//        return ret.reversed();
+//    }
 }
