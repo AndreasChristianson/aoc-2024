@@ -28,4 +28,26 @@ public record Point(
     public Point negate() {
         return new Point(-1 * row, -1 * col);
     }
+
+    public Point wrap(Range2D range) {
+        var normalizedCol = col() - range.colRange().min();
+        var newCol = normalizedCol % range.colRange().width();
+        long finalCol;
+        if (normalizedCol < 0) {
+            finalCol = range.colRange().max() + newCol+1;
+        } else {
+            finalCol = newCol + range.colRange().min();
+        }
+
+        var normalizedRow = row() - range.rowRange().min();
+        var newRow = normalizedRow % range.rowRange().width();
+        long finalRow;
+        if (normalizedRow < 0) {
+            finalRow = range.rowRange().max() + newRow+1;
+        } else {
+            finalRow = newRow + range.rowRange().min();
+        }
+
+        return new Point(finalRow, finalCol);
+    }
 }

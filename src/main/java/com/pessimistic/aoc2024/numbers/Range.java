@@ -6,6 +6,10 @@ public record Range(
         long min, //inclusive
         long max //inclusive
 ) implements Iterable<Long> {
+    public Range {
+        assert min <= max;
+    }
+
     @Override
     public Iterator<Long> iterator() {
         return new Iterator<Long>() {
@@ -33,5 +37,14 @@ public record Range(
 
     public boolean contains(double d) {
         return d >= min && d <= max;
+    }
+
+    public long width() {
+        return max - min +1;
+    }
+
+    public long midPoint() {
+        assert width()%2==1;
+        return width()/2+min();
     }
 }

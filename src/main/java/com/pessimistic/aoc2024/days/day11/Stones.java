@@ -20,15 +20,22 @@ public class Stones {
     }
 
     public Stones(LongStream numbers) {
-        var stoneCountMap = numbers
+//        var stoneCountMap = numbers
+//                .mapToObj(Stone::new)
+//                .collect(
+//                        Collectors.groupingBy(
+//                                Function.identity(),
+//                                Collectors.counting()
+//                        )
+//                );
+        this(numbers
                 .mapToObj(Stone::new)
                 .collect(
                         Collectors.groupingBy(
                                 Function.identity(),
                                 Collectors.counting()
                         )
-                );
-        this(stoneCountMap);
+                ));
     }
 
     public Stones(Map<Stone, Long> stoneCounts) {

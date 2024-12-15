@@ -8,6 +8,13 @@ public record Range2D(
         Range rowRange,
         Range colRange
 ) implements Iterable<Point> {
+    public static Range2D of(int rowMin, int rowMax, int colMin, int colMax) {
+        return new Range2D(
+                new Range(rowMin, rowMax),
+                new Range(colMin, colMax)
+        );
+    }
+
     public boolean contains(Point point) {
         return colRange.contains(point.col()) &&
                 rowRange.contains(point.row());
