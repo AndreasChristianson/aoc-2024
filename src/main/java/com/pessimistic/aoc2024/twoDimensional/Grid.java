@@ -163,6 +163,10 @@ public class Grid<K, F extends Comparable<F>> {
         itemsByPoint.put(point, item);
         pointsByItem.putIfAbsent(item, new ArrayList<>());
         pointsByItem.get(item).add(point);
+
+        var previousFlags = flagsByPoint.getOrDefault(point, emptySet());
+        flagsByPoint.put(point, new HashSet<>());
+        previousFlags.forEach(flag -> pointsByFlag.get(flag).remove(point));
     }
 
     /**
@@ -228,7 +232,7 @@ public class Grid<K, F extends Comparable<F>> {
                         distances.put(nextPoint, totalCost);
 //                        var path = findPath(distances, nextPoint, costFunction, adjacentDirections);
 //                        if (pathValidator.test(path)) {
-                            foundPoints.addLast(nextPoint);
+                        foundPoints.addLast(nextPoint);
 //                        } else {
 //                            distances.put(nextPoint, currentCost);
 //                        }
@@ -237,6 +241,26 @@ public class Grid<K, F extends Comparable<F>> {
             }
         }
         return distances;
+    }
+
+    protected void move(Point from, Point to) {
+        remove(from).ifPresent(item -> set(to, item));
+    }
+
+    private Optional<K> remove(Point point) {
+        validatePoint(point);
+        var oldItem = get(point);
+        itemsByPoint.remove(point);
+        oldItem.map(pointsByItem::get).ifPresent(list -> list.remove(point));
+
+        var previousFlags = flagsByPoint.getOrDefault(point, emptySet());
+        flagsByPoint.put(point, new HashSet<>());
+        previousFlags.forEach(flag -> pointsByFlag.get(flag).remove(point));
+        return oldItem;
+    }
+
+    protected Map<Point, K> getAllItems() {
+        return new HashMap<>(itemsByPoint);
     }
 
 //    public List<Point> findPath(
