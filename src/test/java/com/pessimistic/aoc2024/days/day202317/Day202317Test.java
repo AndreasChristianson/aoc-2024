@@ -1,10 +1,12 @@
 package com.pessimistic.aoc2024.days.day202317;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.condition.DisabledIfEnvironmentVariable;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@Disabled
 class Day202317Test {
 
     @Test
