@@ -13,8 +13,7 @@ import java.util.Map;
 import java.util.function.Function;
 
 import static com.pessimistic.aoc2024.days.day15.WarehouseObject.*;
-import static com.pessimistic.aoc2024.twoDimensional.Direction.E;
-import static com.pessimistic.aoc2024.twoDimensional.Direction.W;
+import static com.pessimistic.aoc2024.twoDimensional.Direction.*;
 
 public class Warehouse extends Grid<WarehouseObject, String> {
     protected Warehouse(Map<Point, WarehouseObject> itemsByPoint, Range2D range) {
@@ -98,10 +97,10 @@ public class Warehouse extends Grid<WarehouseObject, String> {
 
     private static Direction instructionToDirection(String instruction) {
         return switch (instruction) {
-            case "v" -> Direction.S;
+            case "v" -> S;
             case "<" -> W;
             case ">" -> E;
-            case "^" -> Direction.N;
+            case "^" -> N;
             default -> throw new IllegalArgumentException("Invalid instruction: " + instruction);
         };
     }

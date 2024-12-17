@@ -207,42 +207,6 @@ public class Grid<K, F extends Comparable<F>> {
         return ret;
     }
 
-    public Map<Point, Integer> bfs(
-            Point start,
-//            Point finish,
-            Function<K, Integer> costFunction,
-            List<Direction> adjacentDirections,
-            Predicate<List<Point>> pathValidator
-    ) {
-        var distances = new HashMap<Point, Integer>();
-        distances.put(start, 0);
-        var foundPoints = new LinkedList<Point>();
-        foundPoints.add(start);
-        while (!foundPoints.isEmpty()) {
-            var current = foundPoints.remove();
-            for (var direction : adjacentDirections) {
-                var nextPoint = current.add(direction.getDelta());
-                var maybeItem = get(nextPoint);
-                if (maybeItem.isPresent()) {
-                    var item = maybeItem.get();
-                    var cost = costFunction.apply(item);
-                    var totalCost = cost + distances.get(current);
-                    var currentCost = distances.getOrDefault(nextPoint, Integer.MAX_VALUE);
-                    if (totalCost < currentCost) {
-                        distances.put(nextPoint, totalCost);
-//                        var path = findPath(distances, nextPoint, costFunction, adjacentDirections);
-//                        if (pathValidator.test(path)) {
-                        foundPoints.addLast(nextPoint);
-//                        } else {
-//                            distances.put(nextPoint, currentCost);
-//                        }
-                    }
-                }
-            }
-        }
-        return distances;
-    }
-
     protected void move(Point from, Point to) {
         remove(from).ifPresent(item -> set(to, item));
     }
@@ -263,33 +227,4 @@ public class Grid<K, F extends Comparable<F>> {
         return new HashMap<>(itemsByPoint);
     }
 
-//    public List<Point> findPath(
-//            Map<Point, Integer> distances,
-//            Point finish,
-//            Function<K, Integer> costFunction,
-//            List<Direction> adjacentDirections
-//    ) {
-//        var ret = new ArrayList<Point>();
-//
-//        var current = finish;
-//        ret.add(finish);
-//        while (distances.get(current) != 0) {
-////            var minDistance = Integer.MAX_VALUE;
-////            Point minDistancePoint = null;
-//            for (var direction : adjacentDirections) {
-//                var nextPoint = current.add(direction.getDelta());
-//                var nextDistance = distances.getOrDefault(nextPoint, Integer.MAX_VALUE);
-//                if (nextDistance == distances.get(current)- costFunction.apply(get(current).orElseThrow())) {
-//                    ret.add(nextPoint);
-//                    current = nextPoint;
-//                    break;
-//                }
-//            }
-////            assert minDistancePoint != null;
-////            ret.add(minDistancePoint);
-////            current = minDistancePoint;
-//        }
-//
-//        return ret.reversed();
-//    }
 }

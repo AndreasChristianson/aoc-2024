@@ -24,20 +24,14 @@ public class Day202317 {
                 grid.getRange().rowRange().max(),
                 grid.getRange().colRange().max()
         );
-        var distances = grid.bfs(
-                start,
-                HeatLoss::value,
-                Direction.cardinalDirections(),
-                maxInOneDirection(3)
-        );
-//        var path = grid.findPath(
-//                distances,
-//                finish,
+//        var distances = grid.bfs(
+//                start,
 //                HeatLoss::value,
-//                Direction.cardinalDirections()
+//                Direction.cardinalDirections(),
+//                maxInOneDirection(3)
 //        );
-//        System.out.println(grid.toString(point -> path.contains(point) ? "*" : null));
-        return distances.get(finish);
+//        return distances.get(finish);
+        return -1;
     }
 
     private static Predicate<List<Point>> maxInOneDirection(int maxAllowed) {
