@@ -3,7 +3,8 @@ package com.pessimistic.aoc2024.twoDimensional;
 import java.util.List;
 
 public enum Direction {
-    N, W, E, S;
+    N, E, S, W,
+    ;
 
     private static final List<Direction> CARDINALS = List.of(N, W, E, S);
 
@@ -26,6 +27,14 @@ public enum Direction {
             case S -> W;
             case W -> N;
             case E -> S;
+        };
+    }
+
+    public int minRotationDegrees(Direction other) {
+        return switch (Math.abs(this.ordinal() - other.ordinal())) {
+            case 0 -> 0;
+            case 2 -> 180;
+            default -> 90;
         };
     }
 }

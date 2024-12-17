@@ -34,7 +34,7 @@ public record Point(
         var newCol = normalizedCol % range.colRange().width();
         long finalCol;
         if (normalizedCol < 0) {
-            finalCol = range.colRange().max() + newCol+1;
+            finalCol = range.colRange().max() + newCol + 1;
         } else {
             finalCol = newCol + range.colRange().min();
         }
@@ -43,11 +43,16 @@ public record Point(
         var newRow = normalizedRow % range.rowRange().width();
         long finalRow;
         if (normalizedRow < 0) {
-            finalRow = range.rowRange().max() + newRow+1;
+            finalRow = range.rowRange().max() + newRow + 1;
         } else {
             finalRow = newRow + range.rowRange().min();
         }
 
         return new Point(finalRow, finalCol);
+    }
+
+    public long manhattanDistance(Point other) {
+        return Math.abs(this.col() - other.col())
+                + Math.abs(this.row() - other.row());
     }
 }
