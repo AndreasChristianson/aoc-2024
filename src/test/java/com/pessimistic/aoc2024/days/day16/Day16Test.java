@@ -12,6 +12,7 @@ class Day16Test {
         var result = Day16.star1("example/day-16.1.txt");
         assertThat(result).isEqualTo(7036);
     }
+
     @Test
     void star1Example2() {
         var result = Day16.star1("example/day-16.2.txt");

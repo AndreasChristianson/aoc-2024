@@ -16,14 +16,14 @@ public class Robot {
     //p=0,4 v=3,-3
     public static Robot fromString(String line) {
         var matches = TextUtils.allMatches(line, "p=(?<px>-?\\d+),(?<py>-?\\d+) v=(?<vx>-?\\d+),(?<vy>-?\\d+)")
-                    .findFirst().orElseThrow();
+                .findFirst().orElseThrow();
         var px = Integer.parseInt(matches.get("px"));
         var py = Integer.parseInt(matches.get("py"));
         var vx = Integer.parseInt(matches.get("vx"));
         var vy = Integer.parseInt(matches.get("vy"));
         return new Robot(
-                Point.of(px,py),
-                Point.of(vx,vy)
+                Point.of(px, py),
+                Point.of(vx, vy)
         );
     }
 

@@ -1,7 +1,6 @@
 package com.pessimistic.aoc2024.util;
 
 import java.util.Arrays;
-import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 import java.util.regex.Matcher;

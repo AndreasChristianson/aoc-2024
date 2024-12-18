@@ -80,11 +80,11 @@ public class GardenGrid extends Grid<Plant, String> {
                                 .collect(Collectors.toSet());
                         var relatedEdges = 0;
                         for (var edge : edges) {
-                            if(edges.contains(edge.add(direction.rotateClockwise90().getDelta()))){
+                            if (edges.contains(edge.add(direction.rotateClockwise90().getDelta()))) {
                                 relatedEdges++;
                             }
                         }
-                        return edges.size()-relatedEdges;
+                        return edges.size() - relatedEdges;
                     })
                     .sum();
         }

@@ -40,11 +40,11 @@ public record Range(
     }
 
     public long width() {
-        return max - min +1;
+        return max - min + 1;
     }
 
     public long midPoint() {
-        assert width()%2==1;
-        return width()/2+min();
+        assert width() % 2 == 1;
+        return width() / 2 + min();
     }
 }

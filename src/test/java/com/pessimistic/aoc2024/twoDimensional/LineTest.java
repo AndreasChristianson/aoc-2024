@@ -56,6 +56,6 @@ class LineTest {
         Assertions.assertThat(new Line(new Point(-60, 17), new Point(20, 21))
                         .intersect(new Line(new Point(0, -34), new Point(2, 34))))
                 .get()
-                .isEqualTo(new Point(1,20)); //(1.59057, 20.07953)
+                .isEqualTo(new Point(1, 20)); //(1.59057, 20.07953)
     }
 }

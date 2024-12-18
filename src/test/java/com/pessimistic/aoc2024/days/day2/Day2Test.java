@@ -1,6 +1,5 @@
 package com.pessimistic.aoc2024.days.day2;
 
-import com.pessimistic.aoc2024.days.day2.Day2;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.condition.DisabledIfEnvironmentVariable;
 

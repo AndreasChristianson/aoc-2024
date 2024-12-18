@@ -12,9 +12,9 @@ public record ReindeerMazeTile(
         Direction direction
 ) {
     public static List<ReindeerMazeTile> converter(Pair<Point, ReindeerMazeTileType> pair) {
-            return Direction.cardinalDirections()
-                    .stream()
-                    .map(dir -> new ReindeerMazeTile(pair.getRight(), pair.getLeft(), dir))
-                    .toList();
+        return Direction.cardinalDirections()
+                .stream()
+                .map(dir -> new ReindeerMazeTile(pair.getRight(), pair.getLeft(), dir))
+                .toList();
     }
 }
