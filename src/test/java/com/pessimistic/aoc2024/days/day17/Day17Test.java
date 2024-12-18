@@ -1,6 +1,5 @@
 package com.pessimistic.aoc2024.days.day17;
 
-import com.pessimistic.aoc2024.days.day17.Day17;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.condition.DisabledIfEnvironmentVariable;
 
@@ -11,25 +10,20 @@ class Day17Test {
     @Test
     void star1Example1() {
         var result = Day17.star1("example/day-17.txt");
-        assertThat(result).isEqualTo(7036);
+        assertThat(result).isEqualTo("4,6,3,5,6,3,5,2,1,0");
     }
+
     @Test
     void star1Example0() {
-        assertThat(Day17.star1("example/day-17.2.txt")).isEqualTo("012");
-        assertThat(Day17.star1("example/day-17.3.txt")).isEqualTo("42567777310");
+        assertThat(Day17.star1("example/day-17.2.txt")).isEqualTo("0,1,2");
+        assertThat(Day17.star1("example/day-17.3.txt")).isEqualTo("4,2,5,6,7,7,7,7,3,1,0");
     }
 
     @Test
     @DisabledIfEnvironmentVariable(named = "CI", matches = "true")
     void star1() {
         var result = Day17.star1("actual/day-17.txt");
-        assertThat(result).isEqualTo(82460);
-    }
-
-    @Test
-    void star2Example1() {
-        var result = Day17.star2("example/day-17.txt");
-        assertThat(result).isEqualTo(45);
+        assertThat(result).isEqualTo("2,3,6,2,1,6,1,2,1");
     }
 
 
@@ -37,6 +31,6 @@ class Day17Test {
     @Test
     void star2() {
         var result = Day17.star2("actual/day-17.txt");
-        assertThat(result).isEqualTo(590);
+        assertThat(result).isEqualTo(90938893811949L);
     }
 }
