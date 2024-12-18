@@ -5,12 +5,13 @@ import org.apache.commons.lang3.tuple.Pair;
 import java.util.LinkedList;
 import java.util.function.Predicate;
 
+// todo: switch these functions from passing longs to passing a range
 public class SearchUtils {
     private SearchUtils() {
     }
 
     /**
-     * find where the function turns true
+     * find where the predicate turns true
      */
     public static long binarySearch(Predicate<Long> funct, long start, long end) {
         assert !funct.test(start);
@@ -29,6 +30,10 @@ public class SearchUtils {
         return max;
     }
 
+    /**
+    * given a range, find the places within that range where a given predicate turns true, then turns back to false
+    * for example, given the number line |0f1f2t3t4t5t6t7f8f9f|, return 2,6. The first time the predicate is true, and the last time it is true
+    */
     public static Pair<Long, Long> bandSearch(Predicate<Long> funct, long start, long end) {
         assert start < end;
         var inBand = sampleUntil(funct, start, end);
@@ -50,6 +55,10 @@ public class SearchUtils {
         );
     }
 
+    /**
+    * find a spot within a range where a given predicate is true.
+    * uses a short circuting beadth first binary divide
+    */
     private static long sampleUntil(Predicate<Long> funct, long start, long end) {
         var queue = new LinkedList<Pair<Long, Long>>();
         queue.add(Pair.of(start, end));
