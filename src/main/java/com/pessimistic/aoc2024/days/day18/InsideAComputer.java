@@ -6,6 +6,9 @@ public enum InsideAComputer {
 
     @Override
     public String toString() {
-        return "#";
+        return switch (this){
+            case FALLING_BYTE -> "#";
+            case SPACE -> ".";
+        };
     }
 }

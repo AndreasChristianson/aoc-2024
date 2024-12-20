@@ -41,4 +41,8 @@ public record Range2D(
             }
         };
     }
+
+    public Point max() {
+        return Point.of(rowRange().max(), colRange().max());
+    }
 }

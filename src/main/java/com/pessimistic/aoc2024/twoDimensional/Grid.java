@@ -17,7 +17,7 @@ public class Grid<K, F extends Comparable<F>> {
     private final Map<Point, Set<F>> flagsByPoint;
     private final Range2D range;
 
-    protected Grid(
+    public Grid(
             Map<Point, K> itemsByPoint,
             Range2D range
     ) {
@@ -226,4 +226,11 @@ public class Grid<K, F extends Comparable<F>> {
         return new HashMap<>(itemsByPoint);
     }
 
+    public void fill(K filler) {
+        for (var point: getRange()){
+            if (get(point).isEmpty()){
+                set(point, filler);
+            }
+        }
+    }
 }
