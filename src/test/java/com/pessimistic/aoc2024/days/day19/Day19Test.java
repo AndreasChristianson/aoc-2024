@@ -11,26 +11,26 @@ class Day19Test {
     @Test
     void star1Example() {
         var result = Day19.star1("example/day-19.txt");
-        assertThat(result).isEqualTo(480);
+        assertThat(result).isEqualTo(6);
     }
 
     @Test
     @DisabledIfEnvironmentVariable(named = "CI", matches = "true")
     void star1() {
         var result = Day19.star1("actual/day-19.txt");
-        assertThat(result).isEqualTo(29187);
+        assertThat(result).isEqualTo(336);
     }
 
     @Test
     void star2Example() {
         var result = Day19.star2("example/day-19.txt");
-        assertThat(result).isEqualTo(875318608908L);
+        assertThat(result).isEqualTo(16);
     }
 
     @DisabledIfEnvironmentVariable(named = "CI", matches = "true")
     @Test
     void star2() {
         var result = Day19.star2("actual/day-19.txt");
-        assertThat(result).isEqualTo(99968222587852L);
+        assertThat(result).isEqualTo(0);
     }
 }
