@@ -9,7 +9,6 @@ import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 import java.util.logging.Logger;
 
@@ -39,7 +38,8 @@ public class Day18 {
                 pair -> List.of(pair),
                 List.of(SPACE)
         );
-        return graph.findMinDistance(Pair.of(Point.of(0,0),SPACE), item -> item.getLeft().equals(range.max()));
+        graph.traverseFrom(Pair.of(Point.of(0, 0), SPACE));
+        return graph.findMinDistance(item -> item.getLeft().equals(range.max()));
     }
 
     public static String star2(String fileName, Range2D range) {
@@ -60,12 +60,13 @@ public class Day18 {
                     pair -> List.of(pair),
                     List.of(SPACE)
             );
-            try{
-                graph.findMinDistance(Pair.of(Point.of(0,0),SPACE), item -> item.getLeft().equals(range.max()));
-            }catch (Exception _){
+            try {
+                graph.traverseFrom(Pair.of(Point.of(0, 0), SPACE));
+                graph.findMinDistance(item -> item.getLeft().equals(range.max()));
+            } catch (Exception _) {
                 System.out.println(grid);
 
-                return "%d,%d".formatted(point.col(),point.row());
+                return "%d,%d".formatted(point.col(), point.row());
             }
         }
         return "";

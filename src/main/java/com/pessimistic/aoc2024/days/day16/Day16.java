@@ -28,9 +28,8 @@ public class Day16 {
                 List.of(FLOOR, START, FINISH)
         );
         var from = grid.find(START).stream().findFirst().orElseThrow();
-
+        maze.traverseFrom(new ReindeerMazeTile(START, from, Direction.E));
         return maze.findMinDistance(
-                new ReindeerMazeTile(START, from, Direction.E),
                 reindeerMazeTile -> reindeerMazeTile.type().equals(FINISH)
         );
     }
@@ -46,9 +45,8 @@ public class Day16 {
                 List.of(FLOOR, START, FINISH)
         );
         var from = grid.find(START).stream().findFirst().orElseThrow();
-
+        maze.traverseFrom(new ReindeerMazeTile(START, from, Direction.E));
         return maze.findPaths(
-                        new ReindeerMazeTile(START, from, Direction.E),
                         reindeerMazeTile -> reindeerMazeTile.type().equals(FINISH)
                 )
                 .stream()

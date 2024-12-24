@@ -3,12 +3,14 @@ package com.pessimistic.aoc2024.twoDimensional;
 import com.pessimistic.aoc2024.numbers.Range;
 
 import java.util.Iterator;
+import java.util.stream.Stream;
+import java.util.stream.StreamSupport;
 
 public record Range2D(
         Range rowRange,
         Range colRange
 ) implements Iterable<Point> {
-    public static Range2D of(int rowMin, int rowMax, int colMin, int colMax) {
+    public static Range2D of(long rowMin, long rowMax, long colMin, long colMax) {
         return new Range2D(
                 new Range(rowMin, rowMax),
                 new Range(colMin, colMax)
@@ -44,5 +46,9 @@ public record Range2D(
 
     public Point max() {
         return Point.of(rowRange().max(), colRange().max());
+    }
+
+    public Stream<Point> stream() {
+        return StreamSupport.stream(this.spliterator(), false);
     }
 }

@@ -11,10 +11,11 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-public class DirectedGraph<K> {
-    private final Map<K, Node<K>> nodeMap;
+public class DirectedGraph<K> implements Iterable<K>{
+    protected final Map<K, Node<K>> nodeMap;
+    protected HashMap<K, Pair<Long, Set<K>>> weights;
 
-    private DirectedGraph(Map<K, Node<K>> nodeMap) {
+    protected DirectedGraph(Map<K, Node<K>> nodeMap) {
         this.nodeMap = nodeMap;
     }
 
@@ -57,8 +58,8 @@ public class DirectedGraph<K> {
         return new DirectedGraph<>(nodeMap);
     }
 
-    public long findMinDistance(K from, Predicate<K> until) {
-        var weights = traverseFrom(from);
+    public long findMinDistance(Predicate<K> until) {
+//        traverseFrom(from);
         return minDistance(until, weights);
     }
 
@@ -72,8 +73,8 @@ public class DirectedGraph<K> {
                 .orElseThrow(() -> new RuntimeException("No route found"));
     }
 
-    public List<List<K>> findPaths(K from, Predicate<K> until) {
-        var weights = traverseFrom(from);
+    public List<List<K>> findPaths(Predicate<K> until) {
+//        traverseFrom(from);
         var minDistance = minDistance(until, weights);
         return weights.entrySet()
                 .stream()
@@ -97,37 +98,57 @@ public class DirectedGraph<K> {
         return ret;
     }
 
+    public DirectedGraph<K> insertEdge(K from, K to, Long weight) {
+        var newNodes = nodeMap.values()
+                .stream()
+                .map(node -> new Node<K>(node.item, new HashMap<>(node.edges)))
+                .collect(Collectors.toMap(Node::item, Function.identity()));
 
-    private HashMap<K, Pair<Long, Set<K>>> traverseFrom(K from) {
-        var ret = new HashMap<K, Pair<Long, Set<K>>>();
+        var result = new DirectedGraph<>(newNodes);
+        var source = result.nodeMap.get(from);
+        assert source != null;
+        source.edges.put(to, weight);
+        result.weights = new HashMap<>(weights);
+        result.exploreFrom(from);
+        return result;
+    }
+
+    public void exploreFrom(K from) {
         var discovered = new LinkedList<K>();
         discovered.add(from);
-        ret.put(from, Pair.of(0L, new HashSet<>()));
         while (!discovered.isEmpty()) {
             var location = discovered.poll();
             var node = nodeMap.get(location);
-            var distance = ret.get(location).getLeft();
+            var distance = weights.get(location).getLeft();
             assert node != null;
             for (var edge : node.edges().keySet()) {
                 var edgeWeight = node.edges().get(edge);
-                var oldWeight = ret.getOrDefault(edge, Pair.of(Long.MAX_VALUE, null)).getLeft();
+                var oldWeight = weights.getOrDefault(edge, Pair.of(Long.MAX_VALUE, null)).getLeft();
                 var newWeight = edgeWeight + distance;
                 if (newWeight < oldWeight) {
                     var history = new HashSet<K>();
                     history.add(location);
-                    ret.put(edge, Pair.of(newWeight, history));
+                    weights.put(edge, Pair.of(newWeight, history));
                     discovered.add(edge);
                 } else if (newWeight == oldWeight) {
-                    ret.get(edge).getRight().add(location);
+                    weights.get(edge).getRight().add(location);
                 }
             }
         }
-
-
-        return ret;
     }
 
-    private record Node<K>(
+    public void traverseFrom(K from) {
+        weights = new HashMap<>();
+        weights.put(from, Pair.of(0L, new HashSet<>()));
+        exploreFrom(from);
+    }
+
+    @Override
+    public Iterator<K> iterator() {
+        return nodeMap.keySet().iterator();
+    }
+
+    public record Node<K>(
             K item,
             Map<K, Long> edges
     ) {

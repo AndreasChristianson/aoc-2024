@@ -1,12 +1,16 @@
 package com.pessimistic.aoc2024.twoDimensional;
 
 import com.pessimistic.aoc2024.numbers.Range;
+import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.*;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
+import java.util.stream.StreamSupport;
 
+import static java.util.Collections.disjoint;
 import static java.util.Collections.emptySet;
 
 public class Grid<K, F extends Comparable<F>> {
@@ -227,10 +231,36 @@ public class Grid<K, F extends Comparable<F>> {
     }
 
     public void fill(K filler) {
-        for (var point: getRange()){
-            if (get(point).isEmpty()){
+        for (var point : getRange()) {
+            if (get(point).isEmpty()) {
                 set(point, filler);
             }
         }
     }
+
+    public List<Pair<Point, K>> getWithin(Point from, int distance) {
+        var range = Range2D.of(
+                from.row() - distance,
+                from.row() + distance,
+                from.col() - distance,
+                from.col() + distance
+        );
+        return range.stream()
+                .filter(point -> !point.equals(from))
+                .map(point -> Pair.of(point, itemsByPoint.get(point)))
+                .filter(pair -> pair.getRight() != null)
+                .toList();
+    }
+    public List<Pair<Point, K>> getWithinManhattan(Point from, int distance) {
+        return getWithin(from, distance)
+                .stream().filter(pair -> pair.getLeft().manhattanDistance(from)<=distance)
+                .toList();
+    }
+
+    public List<Pair<Point, K>> getAtManhattan(Point from, int distance) {
+        return getWithin(from, distance)
+                .stream().filter(pair -> pair.getLeft().manhattanDistance(from)==distance)
+                .toList();
+    }
+
 }

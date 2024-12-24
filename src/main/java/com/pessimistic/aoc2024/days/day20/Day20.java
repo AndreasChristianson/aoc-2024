@@ -1,7 +1,14 @@
 package com.pessimistic.aoc2024.days.day20;
 
-import com.pessimistic.aoc2024.twoDimensional.Range2D;
+import com.pessimistic.aoc2024.graph.DirectedGraph;
+import com.pessimistic.aoc2024.twoDimensional.Grid;
+import com.pessimistic.aoc2024.twoDimensional.Point;
+import com.pessimistic.aoc2024.util.FileUtils;
+import org.apache.commons.lang3.tuple.Pair;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Optional;
 import java.util.logging.Logger;
 
 public class Day20 {
@@ -10,11 +17,28 @@ public class Day20 {
     private Day20() {
     }
 
-    public static long star1(String fileName) {
-        return -1;
-    }
+    public static long star2(int allowedCheatLength, long minCheat, String fileName) {
+        var lines = FileUtils.readTestFile(fileName);
+        var grid = Grid.of(lines, RacetrackSquare::fromChar);
+        var start = grid.getItemPoints(RacetrackSquare.START)
+                .getFirst();
+        var end = grid.getItemPoints(RacetrackSquare.END)
+                .getFirst();
+        var track = new RaceTrack(
+                grid
+        );
+        track.traverseFrom(start);
+        var noCheats = track.findMinDistance(end::equals);
+        logger.info("distance without cheats: %d".formatted(noCheats));
+        var cheats = track.findCheats(allowedCheatLength);
 
-    public static long star2(String fileName) {
-        return -1;
+        logger.info("cheat count: %d".formatted(cheats.size()));
+
+
+
+        return cheats.entrySet()
+                .stream()
+                .filter(entry -> entry.getValue() >= minCheat)
+                .count();
     }
 }
