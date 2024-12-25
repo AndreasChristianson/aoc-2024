@@ -38,6 +38,7 @@ public class Grid<K, F extends Comparable<F>> {
         pointsByFlag = new TreeMap<>();
     }
 
+
     @Override
     public String toString() {
         return toString(_ -> null);
