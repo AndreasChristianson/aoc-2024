@@ -48,6 +48,10 @@ public class Grid<K, F extends Comparable<F>> {
         return new Grid<>(itemsMap, collectRange(lines));
     }
 
+    public static <F extends Comparable<F>> Grid<Character, F> of(List<String> list) {
+        return of(list, Function.identity());
+    }
+
     public static <K> Map<Point, K> classifyToMap(List<Map.Entry<Point, Character>> entries, Function<Character, K> charClassifier) {
         return entries.stream()
                 .map(entry -> new AbstractMap.SimpleEntry<>(entry.getKey(), charClassifier.apply(entry.getValue())))
@@ -251,15 +255,16 @@ public class Grid<K, F extends Comparable<F>> {
                 .filter(pair -> pair.getRight() != null)
                 .toList();
     }
+
     public List<Pair<Point, K>> getWithinManhattan(Point from, int distance) {
         return getWithin(from, distance)
-                .stream().filter(pair -> pair.getLeft().manhattanDistance(from)<=distance)
+                .stream().filter(pair -> pair.getLeft().manhattanDistance(from) <= distance)
                 .toList();
     }
 
     public List<Pair<Point, K>> getAtManhattan(Point from, int distance) {
         return getWithin(from, distance)
-                .stream().filter(pair -> pair.getLeft().manhattanDistance(from)==distance)
+                .stream().filter(pair -> pair.getLeft().manhattanDistance(from) == distance)
                 .toList();
     }
 
