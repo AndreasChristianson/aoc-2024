@@ -7,9 +7,11 @@ import java.util.stream.Collectors;
 
 public class LanParty {
     private final Map<String, Node> nodesById;
+    private final List<Set<String>> cliques;
 
     public LanParty() {
         this.nodesById = new HashMap<>();
+        this.cliques = new ArrayList<Set<String>>();
     }
 
     public static LanParty fromLines(List<String> lines) {
@@ -36,8 +38,33 @@ public class LanParty {
                 .collect(Collectors.toSet());
     }
 
-    public List<String> findLargestCluster() {
-        return Collections.emptyList();
+    public List<Set<String>> findCliques() {
+        var r = new HashSet<String>();
+        var x = new HashSet<String>();
+        var p = new HashSet<>(nodesById.keySet());
+        bronKerbosch(r, p, x);
+        return cliques;
+    }
+
+    // https://en.wikipedia.org/wiki/Bron%E2%80%93Kerbosch_algorithm#Without_pivoting
+    private void bronKerbosch(Set<String> r, Set<String> p, Set<String> x) {
+        if (p.isEmpty() && x.isEmpty()) {
+            cliques.add(r);
+        }
+        var remainingP = new HashSet<>(p);
+        for (var id : p) {
+            var node = nodesById.get(id);
+            assert node != null;
+            var newR = new HashSet<>(r);
+            newR.add(id);
+            var newP = new HashSet<>(remainingP);
+            newP.retainAll(node.connections);
+            var newX = new HashSet<>(x);
+            newX.retainAll(node.connections);
+            bronKerbosch(newR,newP,newX);
+            remainingP.remove(id);
+            x.add(id);
+        }
     }
 
     private class Node {
