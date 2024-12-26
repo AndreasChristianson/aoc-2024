@@ -8,7 +8,7 @@ public enum RacetrackSquare {
 
     @Override
     public String toString() {
-        return switch (this){
+        return switch (this) {
             case WALL -> "#";
             case SPACE -> ".";
             case END -> "E";
@@ -17,7 +17,7 @@ public enum RacetrackSquare {
     }
 
     public static RacetrackSquare fromChar(Character character) {
-        return switch (character){
+        return switch (character) {
             case '.' -> SPACE;
             case 'S' -> START;
             case 'E' -> END;

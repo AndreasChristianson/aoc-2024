@@ -41,10 +41,9 @@ public class Day22 {
                 .map(Map::entrySet)
                 .flatMap(Collection::stream)
                 .forEach(entry -> combinedHistory.merge(entry.getKey(), Long.valueOf(entry.getValue()), Long::sum));
-        var max = combinedHistory.values().stream()
-                .mapToLong(l -> l)
+        return combinedHistory.values().stream()
+                .mapToLong(Long::longValue)
                 .max()
                 .orElseThrow();
-        return max;
     }
 }

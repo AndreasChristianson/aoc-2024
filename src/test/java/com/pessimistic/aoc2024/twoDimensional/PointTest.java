@@ -61,21 +61,21 @@ class PointTest {
         assertThat(Point.of(0, 0)
                 .atManhattanDistance(3))
                 .containsExactly(
-                        Point.of(3,0),
-                        Point.of(2,1),
-                        Point.of(1,2),
+                        Point.of(3, 0),
+                        Point.of(2, 1),
+                        Point.of(1, 2),
 
-                        Point.of(0,3),
-                        Point.of(-1,2),
-                        Point.of(-2,1),
+                        Point.of(0, 3),
+                        Point.of(-1, 2),
+                        Point.of(-2, 1),
 
-                        Point.of(-3,0),
-                        Point.of(-2,-1),
-                        Point.of(-1,-2),
+                        Point.of(-3, 0),
+                        Point.of(-2, -1),
+                        Point.of(-1, -2),
 
-                        Point.of(0,-3),
-                        Point.of(1,-2),
-                        Point.of(2,-1)
+                        Point.of(0, -3),
+                        Point.of(1, -2),
+                        Point.of(2, -1)
                 );
     }
 

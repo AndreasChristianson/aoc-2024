@@ -14,7 +14,7 @@ public class Day25 {
     }
 
     public static long star1(String fileName) {
-       var  lines = FileUtils.readTestFile(fileName);
+        var lines = FileUtils.readTestFile(fileName);
         var groups = ListUtils.partition(lines, 8);
         var keys = groups.stream()
                 .filter(list -> list.getFirst().equals("#####"))

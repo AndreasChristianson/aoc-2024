@@ -1,13 +1,10 @@
 package com.pessimistic.aoc2024.days.day19;
 
 import com.pessimistic.aoc2024.util.FileUtils;
-import com.pessimistic.aoc2024.util.Memoization;
 
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.List;
 import java.util.Set;
-import java.util.function.Function;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
@@ -60,7 +57,7 @@ public class Day19 {
 
         return patterns.stream()
                 .mapToLong(onsen::permutationCount)
-                .peek(permutations->logger.info("Permutation count: %d".formatted(permutations)))
+                .peek(permutations -> logger.info("Permutation count: %d".formatted(permutations)))
                 .sum();
     }
 }

@@ -11,7 +11,7 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-public class DirectedGraph<K> implements Iterable<K>{
+public class DirectedGraph<K> implements Iterable<K> {
     protected final Map<K, Node<K>> nodeMap;
     protected HashMap<K, Pair<Long, Set<K>>> weights;
 

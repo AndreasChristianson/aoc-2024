@@ -31,9 +31,9 @@ public class SearchUtils {
     }
 
     /**
-    * given a range, find the places within that range where a given predicate turns true, then turns back to false
-    * for example, given the number line |0f1f2t3t4t5t6t7f8f9f|, return 2,6. The first time the predicate is true, and the last time it is true
-    */
+     * given a range, find the places within that range where a given predicate turns true, then turns back to false
+     * for example, given the number line |0f1f2t3t4t5t6t7f8f9f|, return 2,6. The first time the predicate is true, and the last time it is true
+     */
     public static Pair<Long, Long> bandSearch(Predicate<Long> funct, long start, long end) {
         assert start < end;
         var inBand = sampleUntil(funct, start, end);
@@ -56,9 +56,9 @@ public class SearchUtils {
     }
 
     /**
-    * find a spot within a range where a given predicate is true.
-    * uses a short circuting beadth first binary divide
-    */
+     * find a spot within a range where a given predicate is true.
+     * uses a short circuting beadth first binary divide
+     */
     private static long sampleUntil(Predicate<Long> funct, long start, long end) {
         var queue = new LinkedList<Pair<Long, Long>>();
         queue.add(Pair.of(start, end));

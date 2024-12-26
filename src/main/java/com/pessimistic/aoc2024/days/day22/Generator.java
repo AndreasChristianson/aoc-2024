@@ -1,15 +1,13 @@
 package com.pessimistic.aoc2024.days.day22;
 
 import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 
 public class Generator {
 
     private final Long initial;
     private long current;
-    private final Map<FourChanges,Integer> history;
+    private final Map<FourChanges, Integer> history;
     private FourChanges recentChanges;
 
     private static final long MOD = 16777216;
@@ -18,7 +16,7 @@ public class Generator {
         this.initial = initial;
         this.current = initial;
         this.history = new HashMap<>();
-        recentChanges = new FourChanges(null,null,null,null);
+        recentChanges = new FourChanges(null, null, null, null);
     }
 
     private void iterate() {
@@ -33,8 +31,8 @@ public class Generator {
         current ^= round3;
         current %= MOD;
         var changeInPrice = getBananas() - lastBananas;
-        recentChanges = new FourChanges(recentChanges.second(), recentChanges.third(),recentChanges.fourth(), changeInPrice);
-        if(!history.containsKey(recentChanges)&&recentChanges.isValid()) {
+        recentChanges = new FourChanges(recentChanges.second(), recentChanges.third(), recentChanges.fourth(), changeInPrice);
+        if (!history.containsKey(recentChanges) && recentChanges.isValid()) {
             history.put(recentChanges, getBananas());
         }
     }

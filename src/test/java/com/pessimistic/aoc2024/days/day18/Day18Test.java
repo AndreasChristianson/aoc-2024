@@ -33,7 +33,7 @@ class Day18Test {
         var result = Day18.star2(
                 "example/day-18.txt",
                 Range2D.of(0, 6, 0, 6)
-                );
+        );
         assertThat(result).isEqualTo("6,1");
     }
 

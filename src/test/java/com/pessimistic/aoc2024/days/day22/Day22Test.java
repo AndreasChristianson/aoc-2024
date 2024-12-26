@@ -3,8 +3,6 @@ package com.pessimistic.aoc2024.days.day22;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.condition.DisabledIfEnvironmentVariable;
 
-import java.util.List;
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 class Day22Test {

@@ -1,6 +1,5 @@
 package com.pessimistic.aoc2024.days.day19;
 
-import com.pessimistic.aoc2024.days.day19.Day19;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.condition.DisabledIfEnvironmentVariable;
 
@@ -31,6 +30,6 @@ class Day19Test {
     @Test
     void star2() {
         var result = Day19.star2("actual/day-19.txt");
-        assertThat(result).isEqualTo(0);
+        assertThat(result).isEqualTo(758890600222015L);
     }
 }

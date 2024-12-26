@@ -1,14 +1,8 @@
 package com.pessimistic.aoc2024.days.day20;
 
-import com.pessimistic.aoc2024.graph.DirectedGraph;
 import com.pessimistic.aoc2024.twoDimensional.Grid;
-import com.pessimistic.aoc2024.twoDimensional.Point;
 import com.pessimistic.aoc2024.util.FileUtils;
-import org.apache.commons.lang3.tuple.Pair;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Optional;
 import java.util.logging.Logger;
 
 public class Day20 {
@@ -33,8 +27,6 @@ public class Day20 {
         var cheats = track.findCheats(allowedCheatLength);
 
         logger.info("cheat count: %d".formatted(cheats.size()));
-
-
 
         return cheats.entrySet()
                 .stream()
